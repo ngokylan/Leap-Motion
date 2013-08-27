@@ -9,9 +9,7 @@
 		</div>
 		<div class="col-md-6">
 			<h3>Tracking Information</h3>
-			<div id='trackingInformation'>
-				
-			</div>
+			<canvas id="handViewer" class='well' width="500" height="500"></canvas>
 		</div>
 		<div class="col-md-2">
 			<h3>Controls</h3>

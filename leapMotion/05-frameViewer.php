@@ -18,9 +18,9 @@
 			</div>
 
 			<div id='controls'>
-				<button id='openRecording' class='btn btn-success btn-block'>Open Recording</button>
-				<button id='closeRecording' class='btn btn-danger btn-block'>Close Recording</button>
-				<button id='playRecording' class='btn btn-primary btn-block'>Play Recording</button>
+				<button id='openFile' class='btn btn-success btn-block'>Open File</button>
+				<button id='closeFile' class='btn btn-danger btn-block'>Close File</button>
+				<button id='playbackControl' class='btn btn-primary btn-block'>Start Playback</button>
 			</div>
 		</div>
 

@@ -1,63 +1,120 @@
-var frames = null;
-var canvas = document.getElementById('handViewer');
-var context = canvas.getContext('2d');
-var currentFrame=0;
-var playbackTimer;
-var frameRate=1000/60;
+var canvas = document.getElementById('handViewer');	//This is the canvas element the hand is displayed on
+var context = canvas.getContext('2d');	//This is the context of the canvas, where the data is written
+var playbackFrames = null;	//The frames that are imported from a file
+var playbackCurrentFrame=0;	//The current frame that should be displayed in playback
+var playbackTimer = null;	//The timer for the playback of the frames
+var playbackFramerate=1000/60;	//This is the rate at which frames are replayed - 60 frames a second
+var playbackStarted = false;	//Whether or not the playback is started or stopped
+var playbackFrameCount = null; //The amount of frames in the current recording
 
 function frameController(frame){
 
 }
 
-$("#openRecording").click(function() {
+//On click of the openFile button
+$("#openFile").click(function() {
+	getFile();
+});
 
+//On click of the close file button
+$("#closeFile").click(function() {
+	closeFile();
+});
+
+//On click of the playback controll button
+$("#playbackControl").click(function() {
+	if(playbackFrames!=null){
+		if(playbackStarted==false){
+			//Calling the startplayback function
+			startPlayback();
+		}else if(playbackStarted==true){
+			//calling the stopPlayback function
+			stopPlayback();
+		}
+	}else{
+		setControlState("No file chosen for playback");
+	}
+});
+
+function getFile(){
 	$.get('files/frameDump-1.txt', function(data) {
-		frames=data.split("\n\r");
+		playbackFrames=data.split("\n\r");
 
-		for(var i=0;i<frames.length;i++){
-			frames[i] = JSON.parse(frames[i]);
-			if(frames[i+1]==""){
+		playbackFrameCount = playbackFrames.length;
+
+		for(var i=0;i<playbackFrames.length;i++){
+			playbackFrames[i] = JSON.parse(playbackFrames[i]);
+			if(playbackFrames[i+1]==""){
 				break;
 			}
 		}
 
-		//console.log(frames[500]);
-
-		$("#controlState").html("Data Loaded");
+		setControlState("File Loaded");
 	});
-});
-
-$("#closeRecording").click(function() {
-	clearInterval(playbackTimer)
-	currentFrame=0;
-	frames=null;
-	context.clearRect (0 ,0 , 500 , 500);
-	$("#controlState").html("No Data Loaded");
-});
-
-
-$("#playRecording").click(function() {
-	if(frames!=null){
-		
-		$("#controlState").html("Playback Started");
-		currentFrame=0;
-		playbackTimer = setInterval(function(){getFrameData()}, frameRate);
-	}
-});
-
-
-function getFrameData(){
-
-	if(currentFrame>=frames.length){
-		clearInterval(playbackTimer)
-	}
-
-	drawFrame(frames[currentFrame]);
-	currentFrame++;
-
-
 }
 
+function setControlState(message){
+	$("#controlState").html(message);
+}
+function setPlaybackControl(message){
+	$("#playbackControl").html(message);
+}
+
+
+function startPlayback(){
+	//Setting the control message to started
+	setControlState("Playback Started");
+
+	//Setting the button text to pause playback
+	setPlaybackControl("Pause Playback");
+
+	//Starting the playback of the file
+	playbackTimer = setInterval("getFrameData()", playbackFramerate);
+	
+	//Setting the playback started variable to true
+	playbackStarted = true;
+}
+
+function stopPlayback(){
+	clearInterval(playbackTimer)
+	playbackStarted = false;
+	setPlaybackControl("Continue Playback");
+}
+
+function resetPlayback(){
+	clearInterval(playbackTimer)
+	playbackStarted = false;
+	playbackCurrentFrame=0;
+	context.clearRect (0 ,0 , 500 , 500);
+
+	setControlState("Playback reset");
+	setPlaybackControl("Start Playback");
+}
+
+function closeFile(){
+
+	clearInterval(playbackTimer)
+	playbackFrames = null;
+	playbackCurrentFrame=0;
+	playbackTimer = null;
+	playbackFramerate=1000/60;
+	playbackStarted = false;
+
+	context.clearRect (0 ,0 , 500 , 500);
+	
+	setControlState("No Data Loaded");
+	setPlaybackControl("Start Playback");
+}
+
+function getFrameData(){
+	setControlState(playbackFrameCount + " - " + playbackCurrentFrame);
+	if(playbackCurrentFrame==(playbackFrameCount-1)){
+		playbackCurrentFrame=0;
+	}
+
+	drawFrame(playbackFrames[playbackCurrentFrame]);
+	playbackCurrentFrame++;
+}
 
 function drawFrame(frame){
 	context.clearRect (0 ,0 , 500 , 500);
@@ -83,7 +140,6 @@ function drawFrame(frame){
 		}
 	}
 }
-
 function normalised(value){
 	var normalisedValue = value+250;
 	return normalisedValue;

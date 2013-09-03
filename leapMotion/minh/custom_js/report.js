@@ -16,7 +16,7 @@ var righth_y = new Array();
 
 $("#openRecording").click(function() {
 
-  $.get('../files/frameDump-1.txt', function(data) {
+  $.get('../files/test1.txt', function(data) {
     frames=data.split("\n\r");
 
     
@@ -122,9 +122,7 @@ function resetChart(){
         labels : [""],
         datasets : [
           {
-            strokeColor : "rgba(255,51,102,1)",
-            pointStrokeColor : "#FF3366",
-            data : null
+            data : ""
           }
         ]
         

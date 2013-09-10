@@ -1,0 +1,154 @@
+body
+{
+	padding: 0;
+	margin: 0;
+	background: #2E2E2E url('../images/background.jpg') repeat-x;
+	color: #FFF;
+	font-family: arial, verdana, helvetica, tahoma, sans-serif;
+	font-size: 80%;
+}
+
+a
+{
+	text-decoration: none;
+	color: #F06;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color: #000;
+}
+
+#centrecontainer
+{
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	width: 100%;
+}
+
+#outercontainer
+{
+	margin-left: -390px;
+	position: absolute;
+	top: -230px;
+	left: 50%;
+}
+
+#header
+{
+	width: 780px;
+	height: 50px;
+	background-image: url('../images/header-background.jpg');
+	background-repeat: no-repeat;
+}
+
+#headertitle
+{
+	float: left;
+	width: 280px;
+	height: 50px;
+}
+
+#header h1
+{
+	margin: 0;
+	padding: 11px 0 0 10px;
+	color: #2E2E2E;
+	font-size: 200%;
+	letter-spacing: -2px;
+	font-weight: normal;
+}
+
+#header sup
+{
+	color: #F06;
+	letter-spacing: -1px;
+}
+
+#headermenu
+{
+	float: right;
+	width: 500px;
+	height: 50px;
+}
+
+#headermenu ul
+{
+	margin: 20px 0 0 0;
+	padding: 0;
+	text-align: right;
+	font-size: 110%;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+#headermenu li
+{
+	display: inline;
+	margin-left: 20px;
+}
+
+#headermenu li a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+
+#headermenu li a:hover
+{
+	text-decoration: none;
+	color: #F06;
+}
+
+#container    
+{
+	border: 10px solid #FFF;
+	width: 760px;
+	height: 350px;
+	background: #2E2E2E url('../images/container-background.jpg');
+}
+
+#containertext
+{
+	float: right;
+	overflow: auto;
+	padding: 20px;
+	width: 720px;
+	height: 310px;
+	line-height: 120%;
+}
+
+#containertext p
+{
+	margin: 0 0 10px 0;
+	padding: 0;
+	color: #CCC;
+}
+
+#containertext h1, #containertext h2, #containertext h3
+{
+	margin: 10px 0;
+	padding: 0px;
+	color: #FFF;
+	font-size: 175%;
+	letter-spacing: -1px;
+	font-weight: normal;
+}
+
+#footer
+{
+	width: 780px;
+	height: 50px;
+	background: #2E2E2E url('../images/footer-background.jpg');
+}
+
+#footer p
+{
+	margin: 0;
+	padding: 10px 24px 0 0;
+	text-align: right;
+	color: #333;
+	letter-spacing: -1px;
+}

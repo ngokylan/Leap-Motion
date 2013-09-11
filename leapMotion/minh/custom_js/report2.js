@@ -72,8 +72,8 @@ function generate_chart(leftHand_arr, rightHand_arr, countHand){
       $(function () {
       $('#container').highcharts({
         chart: {
-          zoomType: 'x',
-          spacingRight: 20
+          zoomType: 'y',
+          spacingRight: 200.00005
         },
         title: {
           text: 'Tremor Report'
@@ -85,7 +85,7 @@ function generate_chart(leftHand_arr, rightHand_arr, countHand){
         },
         xAxis: {
           type: 'linear',
-                        maxZoom: 1, // fourteen days
+                        maxZoom: 10000000, // fourteen days
                 title: {
                   text: null
                 }
@@ -179,20 +179,10 @@ function generate_chart(leftHand_arr, rightHand_arr, countHand){
 }
 
 function resetChart(){
-   var lineChartData = "";
+   $("#container").empty(); 
 
-    
-      lineChartData = {
-        labels : [""],
-        datasets : [
-          {
-            data : ""
-          }
-        ]
-        
-      };
-
-  new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+    options.series = [];
+    chart = new Highcharts.Chart(options);
 
   var leftHand_arr = new Array();
   var lefth_x = new Array();

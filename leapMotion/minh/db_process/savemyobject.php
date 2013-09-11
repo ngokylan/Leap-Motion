@@ -40,25 +40,30 @@
 				
 				if($existed_id != ""){//check if exist user id before inserting 
 
-					date_default_timezone_set('Australia/Melbourne');
-					$created_date = date('d/m/Y-H:i:s', time());
-					$created_date .= "-". $userid;
-
-					$sql = "insert into testing_files(id,url,created_date,userid) values(NULL,'$created_date', NULL, '$userid');";
-
-					$query = $db->query($sql);
-					var_dump(json_last_error());
-
 					//save json object into file
 					if ($json_obj != null) { /* sanity check */
-						//file location
-						$file_url = "../files/".$userid."/".$created_date;
 
-						$file = fopen($file_url,'w+');
-						fwrite($file, $json_obj);
-						fclose($file);
+						try {
+    						//file location
+							$file_url = "../files/".$userid."/".$created_date;
 
-						echo "success";
+							$file = fopen($file_url,'w+');
+							fwrite($file, $json_obj);
+							fclose($file);
+
+							date_default_timezone_set('Australia/Melbourne');
+							$created_date = date('d/m/Y-H:i:s', time());
+							$created_date .= "-". $userid;
+
+							$sql = "insert into testing_files(id,url,created_date,userid) values(NULL,'$created_date', NULL, '$userid');";
+
+							$query = $db->query($sql);
+							var_dump(json_last_error());
+
+							echo "success";
+						} catch (Exception $e) {
+							echo 'Caught exception: ',  $e->getMessage(), "\n";
+						}
 					} else {
    					  // handle error 
 						echo "fail to store record file";

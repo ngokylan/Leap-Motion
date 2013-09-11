@@ -14,6 +14,10 @@
 		<script src="../../assets/js/html5shiv.js"></script>
 		<script src="../../assets/js/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- import custom javascript -->
+	<script type="text/javascript" src="custom_js/ajax/xhr.js"></script>
+	<script type="text/javascript" src="custom_js/ajax/ajaxprocess.js"></script>
 </head>
 
 <body>

@@ -1,6 +1,5 @@
 <?php require('../scripts/header_minh.php');?>
 
-<body>
 <link href = "stylesg/slides.css" rel="stylesheet" />
 <div align='center' class="container">
    <img src="./img/slide1.png" class="fullSlideImage" />
@@ -15,3 +14,4 @@
 
 
 <?php require('../scripts/footer.php');?>
+p');?>

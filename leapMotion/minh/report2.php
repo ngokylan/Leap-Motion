@@ -1,9 +1,5 @@
 <?php require('../scripts/header_minh.php');?>
 
-<body>
-
-
-
 
 	<link href = "stylesg/slides.css" rel="stylesheet" />
 	<div align='center' class="container">
@@ -40,3 +36,4 @@
 <script src="graph2/js/modules/exporting.js"></script>
 
 <?php require('../scripts/footer.php');?>
+.php');?>

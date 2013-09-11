@@ -1,6 +1,5 @@
 <?php require('../scripts/header_minh.php');?>
 
-<body>
 <link href = "stylesg/slides.css" rel="stylesheet" />
 
 <div align='center' class="container">
@@ -15,4 +14,4 @@
 <script src="../js/FileSaver.min.js"></script>
 
 
-<?php require('../scripts/footer.php');?>
+<?php require('../scripts/footer.php');?>hp');?>

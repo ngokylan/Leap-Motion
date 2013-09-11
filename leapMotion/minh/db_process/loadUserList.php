@@ -23,8 +23,9 @@
 						
 					$user_array[] = $result->id;
 					$user_array[] = $result->name;
-					$user_array[] = $result->filename;
-					$user_array[] = $result->url;
+
+					$url = "files/".$result->id."/".$result->url;
+					$user_array[] = "<a href='".$url."'>".$result->url ."</a>";
 
 					$created_date = $result->created_date;
 					$created_date = strtotime($created_date);

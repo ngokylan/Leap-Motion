@@ -36,4 +36,3 @@
 <script src="graph2/js/modules/exporting.js"></script>
 
 <?php require('../scripts/footer.php');?>
-.php');?>

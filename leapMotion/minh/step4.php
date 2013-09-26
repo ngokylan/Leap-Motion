@@ -14,4 +14,4 @@
 <script src="../js/FileSaver.min.js"></script>
 
 
-<?php require('../scripts/footer.php');?>hp');?>
+<?php require('../scripts/footer.php');?>

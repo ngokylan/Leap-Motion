@@ -26,6 +26,7 @@ $("#startStopRecording").click(function() {
 
 	if(currentlyRecording==false){
 		//set img src for the instruction
+		$("#instruction_title").html("Moving Hand to the right spot on top of the device");
 		$("#instruction_img").attr("src","img/start-instruction.gif");
 
 		$("#instruction_modal").modal("show");
@@ -34,6 +35,7 @@ $("#startStopRecording").click(function() {
 		},5000);
 	}else{
 		//set img src for the instruction
+		$("#instruction_title").html("Moving Hand out of the device");
 		$("#instruction_img").attr("src","img/end-instruction.gif");
 		$("#instruction_modal").modal("show");
 		setTimeout(function (){

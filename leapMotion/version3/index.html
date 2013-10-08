@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Tremor with Leap Motion</title>
+	<meta name="description" content="Tremor with Leap Motion">
+	<meta name="author" content="SitePoint">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/visualizer.css">
+	<link rel="stylesheet" href="css/base.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+	
+	<div id="app" class="show-hands">
+		<div id="scene">
+			<!--
+			<div id="cube" class="cube">
+				<div class="face tp"></div>
+				<div class="face lt"></div>
+				<div class="face rt"></div>
+				<div class="face ft"></div>
+				<div class="face bk"></div>
+			</div>
+			-->
+			<div id="finger" class="cube finger">
+				<div class="face tp"></div>
+				<div class="face lt"></div>
+				<div class="face rt"></div>
+				<div class="face ft"></div>
+				<div class="face bk"></div>
+			</div>
+			<div id="sphere" class="cube sphere">
+				<div class="face tp"></div>
+				<div class="face lt"></div>
+				<div class="face rt"></div>
+				<div class="face ft"></div>
+				<div class="face bk"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="infoPanel">
+		<div class='well infoPanelContainer'>
+			
+		</div>
+	</div>
+	
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Tremors with Leap Motion</h4>
+        </div>
+        <div class="modal-body">
+          Welcome to Tremors with Leap Motion. Tremors with Leap motion will detect several attributes related to tremor in a hand.
+          When you click the begin button
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Start Analysis</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/leap.min.js"></script>
+	<script src="js/lmController.js"></script>
+	<script src="js/newVisualizer.js"></script>
+	
+	<script>
+
+		$( document ).ready(function() {
+			$('#myModal').modal()
+		});
+  	
+	</script>
+</body>
+</html>

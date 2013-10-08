@@ -53,7 +53,7 @@
 	</div>
 	
 	<!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -70,7 +70,26 @@
           Click 'Begin' when you are ready.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default btn-success" data-dismiss="modal">Begin</button>
+          <button type="button" class="btn btn-default btn-success dismissModal" data-dismiss="modal">Begin</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  
+  	<!-- Modal -->
+  <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Results</h4>
+        </div>
+        <div class="modal-body">
+			Results area
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-success dismissModal" data-dismiss="modal">Begin</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -89,7 +108,7 @@
 	<script>
 
 		$( document ).ready(function() {
-			$('#myModal').modal()
+			$('#introModal').modal('show')
 		});
   	
 	</script>

@@ -1,54 +1,45 @@
-//Moves the fingers into the correct position for the current frame
-//Parameters
-/*
-	Finger id
-	Base X position
-	Base Y POsition
-	Base Z position
-	X pointing direction
-	Y pointing direction
-	Z pointing direction
-*/
-function moveFinger(Finger, posX, posY, posZ, dirX, dirY, dirZ) {
-	Finger.style.webkitTransform = "translateX("+posX+"px) translateY("+posY+"px) translateZ("+posZ+"px) rotateX("+dirX+"deg) rotateY(0deg) rotateZ("+dirZ+"deg)";
-}
-//Moves the palm object into the correct position for the current frame
-//Parameters
-/*
-	Finger id
-	Base X position
-	Base Y POsition
-	Base Z position
-	X rotation
-	Y rotation
-	Z rotation
-*/
-function moveSphere(Sphere, posX, posY, posZ, rotX, rotY, rotZ) {
-	Sphere.style.webkitTransform = "translateX("+posX+"px) translateY("+posY+"px) translateZ("+posZ+"px) rotateX("+rotX+"deg) rotateY(0deg) rotateZ(0deg)";
-}
+var recording = false;
+var recordedFrames = Array();
+var finishedRecording = false;
 
-
-var fingers = {};	//An array of virtual fingers currently in the system
-var spheres = {};	//An arrat of virtual hands currently in the system
-
+$(".dismissModal").click(function(){
+	recording=true;
+	recordedFrames = Array();
+	finishedRecording = false;
+})
 
 function frameController(frame){	//Looping through every frame passed from the leap motion controller
 
-
-	displayHandsFingers(frame);
+	if(recording){
 	
+		displayHandsFingers(frame);	//Displaying the hands on the screen
+		displayInfo(frame);	//Displaying info about the hands on the screen
 	
-	displayInfo(frame);
-	//recordData(frame);
-	
-	if(frame!=undefined){
-		var isValidFrame = validFrame(frame);
-		console.log(isValidFrame);		
+		if(finishedRecording!=true){	//Checking if we have finished recording
+			
+			if(validFrame(frame)){	//frame is valid
+				
+				recordedFrames.push(frame);
+				
+				if(recordedFrames.length==300){
+					finishedRecording=true;
+					
+					
+					
+					
+					
+					$("#resultsModal").modal('show');
+					recording = false;
+				}
+				
+			}else{	//frame is not valid
+				recordedFrames = Array();
+			}
+			
+		}else{
+			
+		}	
 	}
-	
-
-	
-
 }
 
 function displayInfo(frame){
@@ -103,9 +94,13 @@ function displayInfo(frame){
 	}
 	
 	$("#infoPanel > div:first-child").html("<h3>Hands Detected: </h3>" + handsDetected + "<br><h3>Fingers Detected: </h3>"+ fingersDetected);
+	$("#infoPanel > div:first-child").append("<h3>Fingers Detected: </h3>"+ fingersDetected);
 	$("#infoPanel > div:first-child").append("<h3>Left and Right: </h3>" + leftRight);
 	$("#infoPanel > div:first-child").append("<h3>Up and Down: </h3>" + upDown);
 	$("#infoPanel > div:first-child").append("<h3>Foward and Backward: </h3>" + forwardBackward);	
+	
+	$("#infoPanel > div:first-child").append("<h3>Frames Recorded: </h3>" + recordedFrames.length);
+	$("#infoPanel > div:first-child").append("<h3>Finished Recording: </h3>" + finishedRecording);
 	
 }
 
@@ -186,3 +181,36 @@ function displayHandsFingers(frame){
 		}
 	}	
 }
+
+//Moves the fingers into the correct position for the current frame
+//Parameters
+/*
+	Finger id
+	Base X position
+	Base Y POsition
+	Base Z position
+	X pointing direction
+	Y pointing direction
+	Z pointing direction
+*/
+function moveFinger(Finger, posX, posY, posZ, dirX, dirY, dirZ) {
+	Finger.style.webkitTransform = "translateX("+posX+"px) translateY("+posY+"px) translateZ("+posZ+"px) rotateX("+dirX+"deg) rotateY(0deg) rotateZ("+dirZ+"deg)";
+}
+//Moves the palm object into the correct position for the current frame
+//Parameters
+/*
+	Finger id
+	Base X position
+	Base Y POsition
+	Base Z position
+	X rotation
+	Y rotation
+	Z rotation
+*/
+function moveSphere(Sphere, posX, posY, posZ, rotX, rotY, rotZ) {
+	Sphere.style.webkitTransform = "translateX("+posX+"px) translateY("+posY+"px) translateZ("+posZ+"px) rotateX("+rotX+"deg) rotateY(0deg) rotateZ(0deg)";
+}
+
+
+var fingers = {};	//An array of virtual fingers currently in the system
+var spheres = {};	//An arrat of virtual hands currently in the system

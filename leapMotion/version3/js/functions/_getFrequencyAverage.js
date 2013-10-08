@@ -4,6 +4,8 @@ function getFrequency(positionAr){
 	var direction =null;
 	var changes = 0;
 	var previousCoordinate = null;
+	
+	
 
 	for(var i=0;i<positionAr.length;i++){
 		if(previousCoordinate!=null){
@@ -30,6 +32,6 @@ function getFrequency(positionAr){
 		previousCoordinate = positionAr[i];
 	}
 
-	return changes/timeFrame;
+	return changes/(positionAr.length/60);
 
 }

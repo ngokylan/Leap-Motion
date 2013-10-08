@@ -32,3 +32,8 @@
     opacity: 1;
     background-color:#262626
 }
+
+#infoPanel h5{
+	margin-top:0;
+	padding-top:0;
+}

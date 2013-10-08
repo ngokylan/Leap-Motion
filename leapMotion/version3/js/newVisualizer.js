@@ -36,6 +36,8 @@ function frameController(frame){	//Looping through every frame passed from the l
 
 
 	displayHandsFingers(frame);
+	
+	
 	displayInfo(frame);
 	//recordData(frame);
 

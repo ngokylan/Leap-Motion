@@ -319,7 +319,9 @@ function extractFingers(){
 
       for(var z=0;z<frames[i].pointables[x].tipPosition.length;z++){  //Looping through tip X, Y, Z coordinates of the finger
 
-        fingerPositions[x][z].push(frames[i].pointables[x].tipPosition[z]); //Pushing the position in to the position array
+        if(x < fingerPositions.length){
+          fingerPositions[x][z].push(frames[i].pointables[x].tipPosition[z]); //Pushing the position in to the position array
+        }
 
       }
       fingerPositions[x][3].push(get3dEuclidean(fingerPositions[x][0][i],0,fingerPositions[x][1][i],0,fingerPositions[x][2][i],0));
@@ -609,15 +611,17 @@ function beginRecording(){
       }else{
         frames.push(frame.data);
 
-      //If this is broken its because the \n\r is not working properly
-      //\n\r will make each record be on a new line
-      //THis is used to import that data later
-      //$("#trackingInformation").append(output);
-      //recordedData+=output+"\n\r";
-      framesRecorded++;
+        //If this is broken its because the \n\r is not working properly
+        //\n\r will make each record be on a new line
+        //THis is used to import that data later
+        //$("#trackingInformation").append(output);
+        //recordedData+=output+"\n\r";
+        framesRecorded++;
+      }
+
+      timeFrame = frames.length/60;
     }
   }
-}
 
 
 /*************************** End - Frame process */

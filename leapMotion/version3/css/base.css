@@ -26,3 +26,9 @@
 	
 	text-align: center;
 }
+
+
+.modal-backdrop, .modal-backdrop.fade.in {
+    opacity: 1;
+    background-color:#262626
+}

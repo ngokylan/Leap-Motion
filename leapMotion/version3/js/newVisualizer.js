@@ -25,8 +25,9 @@ function frameController(frame){	//Looping through every frame passed from the l
 					finishedRecording=true;
 					
 					
+					var extractedData = extractData(recordedFrames);
 					
-					
+					updateResultsModal(extractedData);
 					
 					$("#resultsModal").modal('show');
 					recording = false;
@@ -40,6 +41,53 @@ function frameController(frame){	//Looping through every frame passed from the l
 			
 		}	
 	}
+}
+
+function updateResultsModal(data_set){
+	var output = "";
+
+	output+="<div class='well'>";
+	output+="Finger 0<br><br>";
+	output+="Y Hertz: "+getFrequency(data_set[0][1])+" Hz<br>";
+	output+="Y Amplitude: "+getAmplitude(data_set[0][1])+" mm<br>";
+	output+="Y Velocity: "+getVelocityAverage(data_set[0][3])+" mm/s<br>";
+	output+="Y Acceleration: "+getAccelerationAverage(data_set[0][3],data_set[0][4])+" mm/s&sup2;<br>";
+	output+="</div>";
+
+	output+="<div class='well'>";
+	output+="Finger 1<br><br>";
+	output+="Y Hertz: "+getFrequency(data_set[1][1])+" Hz<br>";
+	output+="Y Amplitude: "+getAmplitude(data_set[1][1])+" mm<br>";
+	output+="Y Velocity: "+getVelocityAverage(data_set[1][3])+" mm/s<br>";
+	output+="Y Acceleration: "+getAccelerationAverage(data_set[1][3],data_set[1][4])+" mm/s&sup2;<br>";
+	output+="</div>";
+
+	output+="<div class='well'>";
+	output+="Finger 2<br><br>";
+	output+="Y Hertz: "+getFrequency(data_set[2][1])+" Hz<br>";
+	output+="Y Amplitude: "+getAmplitude(data_set[2][1])+" mm<br>";
+	output+="Y Velocity: "+getVelocityAverage(data_set[2][3])+" mm/s<br>";
+	output+="Y Acceleration: "+getAccelerationAverage(data_set[2][3],data_set[2][4])+" mm/s&sup2;<br>";
+	output+="</div>";
+
+	output+="<div class='well'>";
+	output+="Finger 3<br><br>";
+	output+="Y Hertz: "+getFrequency(data_set[3][1])+" Hz<br>";
+	output+="Y Amplitude: "+getAmplitude(data_set[3][1])+" mm<br>";
+	output+="Y Velocity: "+getVelocityAverage(data_set[3][3])+" mm/s<br>";
+	output+="Y Acceleration: "+getAccelerationAverage(data_set[3][3],data_set[3][4])+" mm/s&sup2;<br>";
+	output+="</div>";
+
+	output+="<div class='well'>";
+	output+="Finger 4<br><br>";
+	output+="Y Hertz: "+getFrequency(data_set[4][1])+" Hz<br>";
+	output+="Y Amplitude: "+getAmplitude(data_set[4][1])+" mm<br>";
+	output+="Y Velocity: "+getVelocityAverage(data_set[4][3])+" mm/s<br>";
+	output+="Y Acceleration: "+getAccelerationAverage(data_set[4][3],data_set[4][4])+" mm/s&sup2;<br>";
+	output+="</div>";
+	
+	
+	$("#resultsModal .modal-body").html(output);
 }
 
 function displayInfo(frame){
@@ -210,7 +258,6 @@ function moveFinger(Finger, posX, posY, posZ, dirX, dirY, dirZ) {
 function moveSphere(Sphere, posX, posY, posZ, rotX, rotY, rotZ) {
 	Sphere.style.webkitTransform = "translateX("+posX+"px) translateY("+posY+"px) translateZ("+posZ+"px) rotateX("+rotX+"deg) rotateY(0deg) rotateZ(0deg)";
 }
-
 
 var fingers = {};	//An array of virtual fingers currently in the system
 var spheres = {};	//An arrat of virtual hands currently in the system

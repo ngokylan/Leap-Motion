@@ -53,11 +53,11 @@
 	</div>
 	
 	<!-- Modal -->
-  <div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="introModal" tabindex="-1" role="dialog" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
           <h4 class="modal-title">Tremors with Leap Motion</h4>
         </div>
         <div class="modal-body">
@@ -78,7 +78,7 @@
   
   
   	<!-- Modal -->
-  <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -104,13 +104,23 @@
 	<script src="js/lmController.js"></script>
 
 	<script src="js/newVisualizer.js"></script>
+	<script src="js/extractData.js"></script>
 	
+	<script src="js/functions/_getAccelerationAverage.js"></script>
+	<script src="js/functions/_getAmplitudeAverage.js"></script>
+	<script src="js/functions/_getArrayAverage.js"></script>
+	<script src="js/functions/_getFrequencyAverage.js"></script>
+	<script src="js/functions/_getVelocityAverage.js"></script>
 	<script>
 
 		$( document ).ready(function() {
 			$('#introModal').modal('show')
+			//$('#introModal').modal({keyboard: false})
 		});
-  	
+		
+		
+		
+		
 	</script>
 </body>
 </html>

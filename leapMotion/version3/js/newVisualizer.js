@@ -40,6 +40,14 @@ function frameController(frame){	//Looping through every frame passed from the l
 	
 	displayInfo(frame);
 	//recordData(frame);
+	
+	if(frame!=undefined){
+		var isValidFrame = validFrame(frame);
+		console.log(isValidFrame);		
+	}
+	
+
+	
 
 }
 

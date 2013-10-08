@@ -1,14 +1,15 @@
 function validFrame(frame){
-	var validHands = validHands(frame.hands.length);
-	var validFingers = validFingers(frame.pointables.length);
+	var isHandsValid = validHands(frame.hands.length);
+	var isFingersValid = validFingers(frame.pointables.length);
 	
-	var validLeftRightPosition = validLeftRightPosition(frame.hands[0].palmPosition[0]);
-	var validUpDownPosition = validUpDownPosition(frame.hands[0].palmPosition[1]);
-	var validForwardBackwardPosition = validForwardBackwardPosition(frame.hands[0].palmPosition[2]);
+	if(frame.hands[0]!=undefined){
+		var isValidLeftRight = validLeftRightPosition(frame.hands[0].palmPosition[0]);
+		var isValidUpDown = validUpDownPosition(frame.hands[0].palmPosition[1]);
+		var isValidFowardBackward = validForwardBackwardPosition(frame.hands[0].palmPosition[2]);
+	}
 	
-	
-	if(validHands && validFingers && validLeftRightPosition && validUpDownPosition && validForwardBackwardPosition){
-		return true
+	if(isHandsValid && isFingersValid && isValidLeftRight && isValidUpDown && isValidFowardBackward){
+		return true;
 	}else{
 		return false;
 	}

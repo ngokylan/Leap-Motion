@@ -32,6 +32,10 @@ function getFrequency(positionAr){
 		previousCoordinate = positionAr[i];
 	}
 
+	console.log(positionAr.length/60);
+
 	return changes/(positionAr.length/60);
+	
+	
 
 }

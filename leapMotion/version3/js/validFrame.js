@@ -1,10 +1,9 @@
-function validFrame(frame,tolerance){
-
+function validFrame(frame,tolerance,fingersRequired){
 
 	var variance = 20 * tolerance;
 
 	var isHandsValid = validHands(frame.hands.length);
-	var isFingersValid = validFingers(frame.pointables.length);
+	var isFingersValid = validFingers(frame.pointables.length,fingersRequired);
 	
 	if(frame.hands[0]!=undefined){
 		var isValidLeftRight = validLeftRightPosition(frame.hands[0].palmPosition[0],variance);
@@ -29,12 +28,12 @@ function validHands(handsDetected){
 	}
 }
 
-function validFingers(fingersDetected){
-	if(fingersDetected==5){
+function validFingers(fingersDetected,fingersRequired){
+	if(fingersDetected==fingersRequired){
 		return 1;
-	}else if(fingersDetected>5) {
+	}else if(fingersDetected>fingersRequired) {
 		return 2;
-	}else if(fingersDetected< 5){
+	}else if(fingersDetected< fingersRequired){
 		return 0;
 	}	
 }

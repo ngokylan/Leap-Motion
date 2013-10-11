@@ -1,24 +1,21 @@
 function colorPickerFromEuclidean(distance){
 	
-	
 	var localDistance = distance;
 	
-	if(localDistance > 255){
-		localDistance = 255;
+	localDistance = parseInt((localDistance/100)*255);
+	
+	if(localDistance>255){
+		localDistance=255
+	}
+	if(localDistance<0){
+		localDistance = 0;
 	}
 	
-	var r = 0 + distance;
-	var g = 255 - distance;
+	var r = 0 + localDistance;
+	var g = 255 - localDistance;
 	var b = 0;
-
-	if(r<0){
-		r=0;
-	}
-	if(g>255){
-		g=255
-	}
 	
-	//console.log(localDistance);
+
 	
 	return "rgba("+r+","+g+","+b+",1)";
 }

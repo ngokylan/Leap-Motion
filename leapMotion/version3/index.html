@@ -53,7 +53,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="introModal" tabindex="-1" role="dialog" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -78,7 +78,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -91,17 +91,19 @@
 					<div class="form-group">
 						<label for="timeRequired">Time Required</label>
 						<input type="text" class="form-control" id="timeRequired" placeholder="Enter time in seconds">
+						<em class="text-muted">This specifies the length of the recording in seconds.</em>
 					</div>
 					<div class="form-group">
-						<label for="fingersRequired">Fingers in recording</label>
+						<label for="fingersRequired">Required Fingers in recording</label>
 						<input type="text" class="form-control" id="fingersRequired" placeholder="Fingers in recording">
+						<em class="text-muted">This specifies the amount of fingers meant to be seen by the device.</em>
 					</div>
 					<div class="form-group">
-						<label for="tolerance">Valid Frame Variance</label>
-						<input type="text" class="form-control" id="tolerance" placeholder="Field of view variance">
+						<label for="tolerance">Valid Range Multiplier</label>
+						<input type="text" class="form-control" id="tolerance" placeholder="Valid Range Multiplier">
+						<em class="text-muted">This specifies the area that the hand can be in to be considered valid</em>
 					</div>
 				</form>
-
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default cancelOptions pull-left" data-dismiss="modal">Cancel</button>
@@ -113,7 +115,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -124,7 +126,8 @@
 				Results area
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-success dismissModal" data-dismiss="modal">Begin</button>
+				<button type="button" class="btn btn-default pull-left openOptions" data-dismiss="modal">Options</button>
+				<button type="button" class="btn btn-default btn-success beginRecording" data-dismiss="modal">Begin</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

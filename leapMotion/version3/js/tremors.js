@@ -1,70 +1,94 @@
-$( document ).ready(function() {
-	$('#introModal').modal('show')
+$( document ).ready(function() {	//When the document loads this function is called
+	$('#introModal').modal({	//Opens the modal dialog box
+		keyboard:false,	//Makes the keyboard inputs not close the modal box
+		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
+	});
 });
 
-var recording = false;
-var recordedFrames = Array();
-var finishedRecording = false;
+var recording = false;	//Defines whether or not the system is recording frames
+var recordedFrames = Array();	//Stores the recorded frames for the current recording
+var preRecordFrames = Array();
+var finishedRecording = false;	//Defines whether or not the system has finished recording
 
-var timeRequired = 5;
-var tolerance = 2;
-var fingersRequired = 5;
+var timeRequired = 5;	//The amount of time valid frames are recorded for
+var tolerance = 2;	//A multiplier for the range of field values that are acceptable, multiplies a value of 20
+var fingersRequired = 5;	//THe amounf of fingers required to be in the frame
 
-$(".beginRecording").click(function(){
-	recording=true;
-	recordedFrames = Array();
-	finishedRecording = false;
+$(".beginRecording").click(function(){	//When the begin recording button is clicked
+	recording=true;	//Sets recording to true
+	recordedFrames = Array();	//empties the recorded frames array so all old entries are removed
+	preRecordFrames = Array();
+	finishedRecording = false;	//Sets finished recording to false so the system know we are not finished
 });
 
-$(".openOptions").click(function(){
+$(".openOptions").click(function(){	//When the options button in the modals is clicked
 	
-	$("#timeRequired").val(timeRequired);
-	$("#tolerance").val(tolerance);
-	$("#fingersRequired").val(fingersRequired);		
+	$("#timeRequired").val(timeRequired); 	//Sets the input field to the current timeRequired
+	$("#tolerance").val(tolerance);	//Sets the input field to hte current tolerance value
+	$("#fingersRequired").val(fingersRequired);	//Sets the input to the current fingers required value
 	
-	$("#optionsModal").modal('show');
+	$('#optionsModal').modal({	//Opens the options modal dialog box
+		keyboard:false,	//Makes the keyboard inputs not close the modal box
+		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
+	});
 });
 
-$(".cancelOptions").click(function(){
-	$("#introModal").modal('show');
+$("#optionsModal .cancelOptions").click(function(){	//The cancel button in the options modal box was clicked
+	$('#introModal').modal({
+		keyboard:false,	//Makes the keyboard inputs not close the modal box
+		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
+	});
 });
 
-$(".saveOptions").click(function(){
+$("#optionsModal .saveOptions").click(function(){	//The save button in the options modal was clicked
 	
-	timeRequired = $("#timeRequired").val();
-	tolerance = $("#tolerance").val();
-	fingersRequired = $("#fingersRequired").val();		
+	timeRequired = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
+	tolerance = $("#tolerance").val();	//Storing the value in the input field for tolerance
+	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
 	
-	$("#introModal").modal('show');		
+	$('#introModal').modal({	//Opens the intro modal dialog vox
+		keyboard:false,	//Makes the keyboard inputs not close the modal box
+		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
+	});	
 });
 
 
 function frameController(frame){	//Looping through every frame passed from the leap motion controller
 
-	if(recording){
+	if(recording){	//if the system is currently recording frames
 	
 		displayHandsFingers(frame);	//Displaying the hands on the screen
-		displayInfo(frame,tolerance);	//Displaying info about the hands on the screen
+		displayInfo(frame,tolerance,fingersRequired);	//Displaying info about the hands on the screen
 	
 		if(finishedRecording!=true){	//Checking if we have finished recording
 			
-			if(validFrame(frame,tolerance)){	//frame is valid
+			if(validFrame(frame,tolerance,fingersRequired)){	//frame is valid
 				
-				recordedFrames.push(frame);
+				if(preRecordFrames.length==60){	// 1 second
+					
+					recordedFrames.push(frame);
 				
-				if(recordedFrames.length==(5*60)){
-					finishedRecording=true;
+					if(recordedFrames.length==(timeRequired*60)){
+						finishedRecording=true;
 					
-					var extractedData = extractData(recordedFrames);
+						var extractedData = extractData(recordedFrames);
 					
-					updateResultsModal(extractedData);
+						updateResultsModal(extractedData);
 					
-					$("#resultsModal").modal('show');
-					recording = false;
+						$('#resultsModal').modal({
+							keyboard:false,
+							backdrop:'static'
+						});
+						recording = false;
+					}
+					
+				}else{
+					preRecordFrames.push(frame);
 				}
 				
 			}else{	//frame is not valid
 				recordedFrames = Array();
+				preRecordFrames = Array();
 			}
 			
 		}else{
@@ -75,6 +99,12 @@ function frameController(frame){	//Looping through every frame passed from the l
 
 function updateResultsModal(data_set){
 	var output = "";
+	
+	//[][0] = X's
+	//[][1] = Y's
+	//[][2] = Z's
+	//[][3] = Velocities
+	//[][4] = timestamps
 
 	output+="<div class='well'>";
 	output+="Finger 0<br><br>";
@@ -120,21 +150,24 @@ function updateResultsModal(data_set){
 	$("#resultsModal .modal-body").html(output);
 }
 
-function displayInfo(frame,tolerance){
+function displayInfo(frame,tolerance,fingersRequired){
 
 	variance = tolerance*20;
 
 	var handsDetected = validHands(frame.hands.length);
-	var fingersDetected = validFingers(frame.pointables.length);
+	var fingersDetected = validFingers(frame.pointables.length,fingersRequired);
 	
 	var leftRight = null;
 	var upDown = null;
 	var forwardBackward = null;
 	
+	var positionText = "";
+	
 	if(frame.hands[0]!=undefined){
 		leftRight = validLeftRightPosition(frame.hands[0].palmPosition[0],variance);
 		upDown = validUpDownPosition(frame.hands[0].palmPosition[1],variance);
 		forwardBackward = validForwardBackwardPosition(frame.hands[0].palmPosition[2],variance);
+		//œpositionText = "<div class='well'>"+frame.hands[0].palmPosition[0]+"<br>"+frame.hands[0].palmPosition[1]+"<br>"+frame.hands[0].palmPosition[2]+"</div>"
 	}
 
 	var handsDetectedMessage;
@@ -152,7 +185,7 @@ function displayInfo(frame,tolerance){
 	}
 	
 	if(fingersDetected==1){
-		fingersDetectedMessage = "5 fingers Detected";
+		fingersDetectedMessage = fingersRequired + " fingers Detected";
 	}else if(fingersDetected==2){
 		fingersDetectedMessage = "Too many fingers";
 	}else if(fingersDetected==0){
@@ -192,7 +225,7 @@ function displayInfo(frame,tolerance){
 	
 	$("#infoPanel > div:first-child").html("");
 	
-	//$("#infoPanel > div:first-child").append("<div class='well'>"+frame.hands[0].palmPosition[0]+"<br>"+frame.hands[0].palmPosition[1]+"<br>"+frame.hands[0].palmPosition[2]+"</div>");
+	$("#infoPanel > div:first-child").append(positionText);
 	
 	var progress = parseInt((recordedFrames.length/(timeRequired*60)*100));
 	$("#infoPanel > div:first-child").append("<div class='well'><h5>Progress</h5><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='"+progress+"' aria-valuemin='0' aria-valuemax='100' style='width: "+progress+"%;'><span class='sr-only'>60% Complete</span></div></div></div>");

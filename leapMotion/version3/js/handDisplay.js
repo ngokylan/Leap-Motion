@@ -21,8 +21,8 @@ function displayHandsFingers(frame){
 		var rotY = (hand._rotation[1]*90);	//Multiplying the hand Y rotation by 90
 		var rotZ = (hand._rotation[0]*90);	//Multiplying the hand Z rotation by 90
 
-		euclideanColor = colorPickerFromEuclidean(parseInt(get3dEuclidean(hand.palmPosition[0],0,hand.palmPosition[2],100,hand.palmPosition[1],0)))
-		
+		euclideanColor = colorPickerFromEuclidean(parseInt(get3dEuclidean(hand.palmPosition[0],0,hand.palmPosition[1],100,hand.palmPosition[2],0)))
+//		euclideanColor = colorPickerFromEuclidean(parseInt(get3dEuclidean(0,0,hand.palmPosition[1],100,0,0)))		
 		var sphere = spheres[hand.id];	//Get the current hand(sphere) from the spheres array and store it as the current sphere
 		
 		if (!sphere) {	//If sphere is not equal to true - this is a new sqhere

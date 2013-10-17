@@ -172,51 +172,80 @@ function displayInfo(frame,fingersRequired){
 	var upDownMessage;
 	var forwardBackwardMessage;
 
+	var handsDetectedMessage_error = "";
 	if(handsDetected==1){
+		handsDetectedMessage_error = "text-success";
 		handsDetectedMessage = "1 Hand Detected";
 	}else if(handsDetected==2){
+		handsDetectedMessage_error = "text-danger";
 		handsDetectedMessage = "Too many hands";
 	}else if(handsDetected==0){
 		handsDetectedMessage = "No hands detected";
 	}
 	
+	var handsDetectedMessage_div = "<div class='well " + handsDetectedMessage_error + "'><h5>Hands: </h5>"+ handsDetectedMessage+"</div>";
+	
+	var fingersDetectedMessage_error = "";
 	if(fingersDetected==1){
+		fingersDetectedMessage_error = "text-success";
 		fingersDetectedMessage = fingersRequired + " fingers Detected";
 	}else if(fingersDetected==2){
+		fingersDetectedMessage_error = "text-danger";
 		fingersDetectedMessage = "Too many fingers";
 	}else if(fingersDetected==0){
 		fingersDetectedMessage = "Not enough fingers";
 	}	
 	
+	var fingersDetectedMessage_div = "<div class='well " + fingersDetectedMessage_error + "'><h5>Fingers: </h5>"+ fingersDetectedMessage+"</div>";
+	
+	var leftRightMessage_error = "";
 	if(leftRight==1){
+		leftRightMessage_error = "text-success";
 		leftRightMessage = "Good Position";
 	}else if(leftRight==2){
+		leftRightMessage_error = "text-danger";
 		leftRightMessage = "Too far right";
 	}else if(leftRight==0){
+		leftRightMessage_error = "text-danger";
 		leftRightMessage = "Too far left";
 	}else{
 		leftRightMessage = "No Data Available";
 	}
 	
+	var leftRightMessage_div = "<div class='well " + leftRightMessage_error + "'><h5>Left/Right: </h5>"+ leftRightMessage+"</div>";
+	
+	var upDownMessage_error = "";
 	if(upDown==1){
+		upDownMessage_error = "text-success";
 		upDownMessage = "Good Position";
 	}else if(upDown==2){
+		upDownMessage_error = "text-danger";
 		upDownMessage = "Too High";
 	}else if(upDown==0){
+		upDownMessage_error = "text-danger";
 		upDownMessage = "Too Low";
 	}else{
 		upDownMessage = "No Data Available";
 	}
 	
+	var upDownMessage_div = "<div class='well " + upDownMessage_error + "'><h5>Up/Down: </h5>"+ upDownMessage+"</div>";
+	
+	
+	var forwardBackwardMessage_error = "";
 	if(forwardBackward==1){
+		forwardBackwardMessage_error = "text-success";
 		forwardBackwardMessage = "Good Position";
 	}else if(forwardBackward==2){
+		forwardBackwardMessage_error = "text-danger";
 		forwardBackwardMessage = "Too far backward";
 	}else if(forwardBackward==0){
+		forwardBackwardMessage_error = "text-danger";
 		forwardBackwardMessage = "Too far forward";
 	}else{
 		forwardBackwardMessage = "No Data Available";
 	}
+	
+	var forwardBackwardMessage_div = "<div class='well " + forwardBackwardMessage_error + "'><h5>Foward/Backward: </h5>"+ forwardBackwardMessage+"</div>";
 	
 	
 	$("#infoPanel > div:first-child").html("");
@@ -225,10 +254,10 @@ function displayInfo(frame,fingersRequired){
 	
 	var progress = parseInt((recordedFrames.length/(timeRequired*60)*100));
 	$("#infoPanel > div:first-child").append("<div class='well'><h5>Progress</h5><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='"+progress+"' aria-valuemin='0' aria-valuemax='100' style='width: "+progress+"%;'><span class='sr-only'>"+progress+"% Complete</span></div></div></div>");
-	$("#infoPanel > div:first-child").append("<div class='well'><h5>Hands: </h5>"+ handsDetectedMessage+"</div>");
-	$("#infoPanel > div:first-child").append("<div class='well'><h5>Fingers: </h5>"+ fingersDetectedMessage+"</div>");
-	$("#infoPanel > div:first-child").append("<div class='well'><h5>Left/Right: </h5>"+ leftRightMessage+"</div>");
-	$("#infoPanel > div:first-child").append("<div class='well'><h5>Up/Down: </h5>"+ upDownMessage+"</div>");
-	$("#infoPanel > div:first-child").append("<div class='well'><h5>Foward/Backward: </h5>"+ forwardBackwardMessage+"</div>");	
+	$("#infoPanel > div:first-child").append(handsDetectedMessage_div);
+	$("#infoPanel > div:first-child").append(fingersDetectedMessage_div);
+	$("#infoPanel > div:first-child").append(leftRightMessage_div);
+	$("#infoPanel > div:first-child").append(upDownMessage_div);
+	$("#infoPanel > div:first-child").append(forwardBackwardMessage_div);	
 	
 }

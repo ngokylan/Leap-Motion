@@ -1,3 +1,9 @@
+/*
+	* Created By		-	Joshua Stopper
+	* Last Edited Date	-	15/10/13
+	* Last Edited By	- 	Joshua Stopper
+	* Description		-	Calculates the average amplitude and returns a value
+*/
 function getAmplitude(positionAr){
 	
 	var average = getArrayAverage(positionAr);

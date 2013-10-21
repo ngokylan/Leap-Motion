@@ -7,6 +7,7 @@ var rangeMultiplier = 2;	//A multiplier for the range of field values that are a
 var baseRangeVariance = 10;
 var fingersRequired = 5;	//THe amounf of fingers required to be in the frame
 
+var WFLC_apply = 0;	// apply Weighted Fourier Linear Combined filter algorithm
 
 $( document ).ready(function() {	//When the document loads this function is called
 	$('#introModal').modal({	//Opens the modal dialog box
@@ -45,11 +46,13 @@ $("#optionsModal .saveOptions").click(function(){	//The save button in the optio
 	timeRequired = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
 	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
 	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
-	
-	$('#introModal').modal({	//Opens the intro modal dialog vox
-		keyboard:false,	//Makes the keyboard inputs not close the modal box
-		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
-	});	
+	WFLC_apply = $("#WFLC_tick").val();//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
+	/*
+	 21-10-2013
+	 Function: call function to validate option input data
+	 Author: Minh Duc Nguyen
+	*/
+	validate_options(timeRequired, fingersRequired, rangeMultiplier);
 });
 
 
@@ -260,4 +263,85 @@ function displayInfo(frame,fingersRequired){
 	$("#infoPanel > div:first-child").append(upDownMessage_div);
 	$("#infoPanel > div:first-child").append(forwardBackwardMessage_div);	
 	
+}
+
+/*
+ 21-10-2013
+ Function: validate option input values
+ Author: Minh Duc Nguyen
+*/
+function validate_options(time_required, fingersRequired, rangeMultiplier){
+
+	var valid = true;
+
+	if(time_required == ""){
+		$("#timeRequired").attr("data-original-title","Time required must not be blank!");
+		$("#timeRequired").tooltip("show");
+		valid = false;
+	}else{
+		if(time_required != parseInt(time_required)){
+			$("#timeRequired").attr("data-original-title","Time required must be an Integer!");
+			$('#timeRequired').tooltip('destroy');
+			$("#timeRequired").tooltip("show");
+			valid = false;
+		}else if(time_required < 0){
+			$("#timeRequired").attr("data-original-title","Time required must be greater than 0!");
+			$('#timeRequired').tooltip('destroy');
+			$("#timeRequired").tooltip("show");
+			valid = false;
+		}else{
+			$("#timeRequired").attr("data-original-title","");
+			$("#timeRequired").tooltip("hide");
+		}
+	}
+	
+	if(fingersRequired == ""){
+		$("#fingersRequired").attr("data-original-title","Time required must not be blank!");
+		$("#fingersRequired").tooltip("show");
+		valid = false;
+	}else{
+		if(fingersRequired != parseInt(fingersRequired)){
+			$("#fingersRequired").attr("data-original-title","Fingers required must be an Integer!");
+			$('#fingersRequired').tooltip('destroy');
+			$("#fingersRequired").tooltip("show");
+			valid = false;
+		}else if(fingersRequired < 0 || fingersRequired > 5){
+			$("#fingersRequired").attr("data-original-title","Fingers required must be greater than 0 and less than 6!");
+			$('#fingersRequired').tooltip('destroy');
+			$("#fingersRequired").tooltip("show");
+			valid = false;
+		}else{
+			$("#fingersRequired").attr("data-original-title","");
+			$("#fingersRequired").tooltip("hide");
+		}
+	}
+	
+	if(rangeMultiplier == ""){
+		$("#rangeMultiplier").attr("data-original-title","Range Multiplier must not be blank!");
+		$("#rangeMultiplier").tooltip("show");
+		valid = false;
+	}else{
+		if(rangeMultiplier != parseInt(rangeMultiplier)){
+			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be an Integer!");
+			$('#rangeMultiplier').tooltip('destroy');
+			$("#rangeMultiplier").tooltip("show");
+		}else if(rangeMultiplier < 0 || rangeMultiplier > 10){
+			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be greater than 0 and less than 10!");
+			$('#rangeMultiplier').tooltip('destroy');
+			$("#rangeMultiplier").tooltip("show");
+		}else{
+			$("#rangeMultiplier").attr("data-original-title","");
+			$("#rangeMultiplier").tooltip("hide");
+		}
+	}
+	
+
+	if(valid == true){
+		$("#optionsModal").modal("hide");
+
+		$('#introModal').modal({	//Opens the intro modal dialog vox
+			keyboard:false,	//Makes the keyboard inputs not close the modal box
+			backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
+		});	
+	}
 }

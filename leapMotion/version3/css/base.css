@@ -37,3 +37,6 @@
 	margin-top:0;
 	padding-top:0;
 }
+
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #d9534f;}
+.red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color: white; }

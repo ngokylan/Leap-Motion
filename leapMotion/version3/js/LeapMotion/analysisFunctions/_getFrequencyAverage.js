@@ -1,4 +1,9 @@
-//Takes an array containing one coordinate
+/*
+	* Created By		-	Joshua Stopper
+	* Last Edited Date	-	15/10/13
+	* Last Edited By	- 	Joshua Stopper
+	* Description		-	Calculates the frequency(hertz) of change based on the array passed
+*/
 function getFrequency(positionAr){
 
 	var direction =null;

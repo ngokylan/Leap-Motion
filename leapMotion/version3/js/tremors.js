@@ -332,10 +332,12 @@ function validate_options(){
 			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be an Integer!");
 			$('#rangeMultiplier').tooltip('destroy');
 			$("#rangeMultiplier").tooltip("show");
+			valid = false;
 		}else if(rangeMultiplier < 0 || rangeMultiplier > 9){
 			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be greater than 0 and less than 10!");
 			$('#rangeMultiplier').tooltip('destroy');
 			$("#rangeMultiplier").tooltip("show");
+			valid = false;
 		}else{
 			$("#rangeMultiplier").attr("data-original-title","");
 			$("#rangeMultiplier").tooltip("hide");

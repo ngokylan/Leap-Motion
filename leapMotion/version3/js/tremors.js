@@ -2,8 +2,8 @@ var recording = false;	//Defines whether or not the system is recording frames
 var recordedFrames = Array();	//Stores the recorded frames for the current recording
 var preRecordFrames = Array();
 
-var timeRequired = 5;	//The amount of time valid frames are recorded for
-var rangeMultiplier = 2;	//A multiplier for the range of field values that are acceptable, multiplies a value of 20
+var timeRequired = 10;	//The amount of time valid frames are recorded for
+var rangeMultiplier = 5;	//A multiplier for the range of field values that are acceptable, multiplies a value of 20
 var baseRangeVariance = 10;
 var fingersRequired = 5;	//THe amounf of fingers required to be in the frame
 
@@ -274,24 +274,24 @@ function displayInfo(frame,fingersRequired){
 */
 function validate_options(){
 
-	time_required = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
-	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
-	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
+	timeRequired = parseInt($("#timeRequired").val());	//Storing the value in the input field for timeRequired
+	rangeMultiplier = parseInt($("#rangeMultiplier").val());	//Storing the value in the input field for rangemultiplier
+	fingersRequired = parseInt($("#fingersRequired").val());	//Storing the value in the input field for fingersRequired
 	WFLC_apply = $("#WFLC_tick").val();//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
 
 	var valid = true;
 
-	if(time_required == ""){
+	if(timeRequired == ""){
 		$("#timeRequired").attr("data-original-title","Time required must not be blank!");
 		$("#timeRequired").tooltip("show");
 		valid = false;
 	}else{
-		if(time_required != parseInt(time_required)){
+		if(timeRequired != parseInt(timeRequired)){
 			$("#timeRequired").attr("data-original-title","Time required must be an Integer!");
 			$('#timeRequired').tooltip('destroy');
 			$("#timeRequired").tooltip("show");
 			valid = false;
-		}else if(time_required < 0){
+		}else if(timeRequired < 0){
 			$("#timeRequired").attr("data-original-title","Time required must be greater than 0!");
 			$('#timeRequired').tooltip('destroy');
 			$("#timeRequired").tooltip("show");
@@ -356,14 +356,14 @@ function validate_options(){
 }
 
 function reset_Options_form(){
-	$("#timeRequired").val("5");	//Storing the value in the input field for timeRequired
-	$("#rangeMultiplier").val("2");	//Storing the value in the input field for rangemultiplier
+	$("#timeRequired").val("10");	//Storing the value in the input field for timeRequired
+	$("#rangeMultiplier").val("5");	//Storing the value in the input field for rangemultiplier
 	$("#fingersRequired").val("5");	
 	$("#WFLC_tick").removeAttr("checked");//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
 
-	time_required = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
-	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
-	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
+	timerequired = parseInt($("#timeRequired").val());	//Storing the value in the input field for timeRequired
+	rangeMultiplier = parseInt($("#rangeMultiplier").val());	//Storing the value in the input field for rangemultiplier
+	fingersRequired = parseInt($("#fingersRequired").val());	//Storing the value in the input field for fingersRequired
 	WFLC_apply = $("#WFLC_tick").val();
 
 	$("#timeRequired").attr("data-original-title","");

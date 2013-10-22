@@ -35,6 +35,11 @@ $(".openOptions").click(function(){	//When the options button in the modals is c
 });
 
 $("#optionsModal .cancelOptions").click(function(){	//The cancel button in the options modal box was clicked
+	/*
+		Function: reset option form when user click cancel button
+		Author: Minh Duc Nguyen
+	*/
+	reset_Options_form();
 	$('#introModal').modal({
 		keyboard:false,	//Makes the keyboard inputs not close the modal box
 		backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
@@ -43,16 +48,13 @@ $("#optionsModal .cancelOptions").click(function(){	//The cancel button in the o
 
 $("#optionsModal .saveOptions").click(function(){	//The save button in the options modal was clicked
 	
-	timeRequired = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
-	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
-	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
-	WFLC_apply = $("#WFLC_tick").val();//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
+	
 	/*
 	 21-10-2013
 	 Function: call function to validate option input data
 	 Author: Minh Duc Nguyen
 	*/
-	validate_options(timeRequired, fingersRequired, rangeMultiplier);
+	validate_options();
 });
 
 
@@ -270,7 +272,12 @@ function displayInfo(frame,fingersRequired){
  Function: validate option input values
  Author: Minh Duc Nguyen
 */
-function validate_options(time_required, fingersRequired, rangeMultiplier){
+function validate_options(){
+
+	time_required = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
+	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
+	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
+	WFLC_apply = $("#WFLC_tick").val();//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
 
 	var valid = true;
 
@@ -301,12 +308,12 @@ function validate_options(time_required, fingersRequired, rangeMultiplier){
 		valid = false;
 	}else{
 		if(fingersRequired != parseInt(fingersRequired)){
-			$("#fingersRequired").attr("data-original-title","Fingers required must be an Integer!");
+			$("#fingersRequired").attr("data-original-title","Required Fingers must be an Integer!");
 			$('#fingersRequired').tooltip('destroy');
 			$("#fingersRequired").tooltip("show");
 			valid = false;
 		}else if(fingersRequired < 0 || fingersRequired > 5){
-			$("#fingersRequired").attr("data-original-title","Fingers required must be greater than 0 and less than 6!");
+			$("#fingersRequired").attr("data-original-title","Required Fingers must be greater than 0 and less than 6!");
 			$('#fingersRequired').tooltip('destroy');
 			$("#fingersRequired").tooltip("show");
 			valid = false;
@@ -325,7 +332,7 @@ function validate_options(time_required, fingersRequired, rangeMultiplier){
 			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be an Integer!");
 			$('#rangeMultiplier').tooltip('destroy');
 			$("#rangeMultiplier").tooltip("show");
-		}else if(rangeMultiplier < 0 || rangeMultiplier > 10){
+		}else if(rangeMultiplier < 0 || rangeMultiplier > 9){
 			$("#rangeMultiplier").attr("data-original-title","Range Multiplier must be greater than 0 and less than 10!");
 			$('#rangeMultiplier').tooltip('destroy');
 			$("#rangeMultiplier").tooltip("show");
@@ -344,4 +351,15 @@ function validate_options(time_required, fingersRequired, rangeMultiplier){
 			backdrop:'static'	//Makes mouse clicks outside the modal not close the dialog box
 		});	
 	}
+}
+
+function reset_Options_form(){
+	$("#timeRequired").val("5");	//Storing the value in the input field for timeRequired
+	$("#rangeMultiplier").val("2");	//Storing the value in the input field for rangemultiplier
+	$("#fingersRequired").val("5");	
+
+	time_required = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
+	rangeMultiplier = $("#rangeMultiplier").val(;	//Storing the value in the input field for rangemultiplier
+	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
+	WFLC_apply = $("#WFLC_tick").attr("checked","false");//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
 }

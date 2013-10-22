@@ -357,9 +357,10 @@ function reset_Options_form(){
 	$("#timeRequired").val("5");	//Storing the value in the input field for timeRequired
 	$("#rangeMultiplier").val("2");	//Storing the value in the input field for rangemultiplier
 	$("#fingersRequired").val("5");	
+	$("#WFLC_tick").removeAttr("checked");//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
 
 	time_required = $("#timeRequired").val();	//Storing the value in the input field for timeRequired
-	rangeMultiplier = $("#rangeMultiplier").val(;	//Storing the value in the input field for rangemultiplier
+	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
 	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
-	WFLC_apply = $("#WFLC_tick").attr("checked","false");//Storing the value in the input field for Weighted Fourier Linear Combined WFLC check box
+	WFLC_apply = $("#WFLC_tick").val();
 }

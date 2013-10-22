@@ -365,4 +365,11 @@ function reset_Options_form(){
 	rangeMultiplier = $("#rangeMultiplier").val();	//Storing the value in the input field for rangemultiplier
 	fingersRequired = $("#fingersRequired").val();	//Storing the value in the input field for fingersRequired
 	WFLC_apply = $("#WFLC_tick").val();
+
+	$("#timeRequired").attr("data-original-title","");
+	$("#timeRequired").tooltip("hide");
+	$("#fingersRequired").attr("data-original-title","");
+	$("#fingersRequired").tooltip("hide");
+	$("#rangeMultiplier").attr("data-original-title","");
+	$("#rangeMultiplier").tooltip("hide");
 }

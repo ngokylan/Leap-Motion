@@ -70,11 +70,12 @@ function frameController(frame){	//Looping through every frame passed from the l
 			if(preRecordFrames.length==60){	// if 1 second of valid frames has been recorded
 				
 				recordedFrames.push(frame);	//Pushing the current frame into the recordedFrames array
-			
+
 				if(recordedFrames.length==(timeRequired*60)){	//If the time required has been reached
 				
-					var extractedData = extractData(recordedFrames);	//extract the data from the frames recorded and stores them in extractedData
-				
+					var extractedData = extractData(recordedFrames);	//extract the data from the frames recorded and stores them in extractedData	
+
+
 					updateResultsModal(extractedData);	//updating the data in the final results model - this also analyses the frames
 				
 					$('#resultsModal').modal({	//Opening the modal
@@ -114,6 +115,7 @@ function updateResultsModal(data_set){
 	output+="Y Hertz: "+getFrequency(data_set[0][1])+" Hz<br>";
 	output+="Y Amplitude: "+getAmplitude(data_set[0][1])+" mm<br>";
 	output+="Y Velocity: "+getVelocityAverage(data_set[0][3])+" mm/s<br>";
+	output+="Y Velocity: "+getVelocityAverageV2(data_set[0][3],data_set[0][4])+" mm/s<br>";
 	output+="Y Acceleration: "+getAccelerationAverage(data_set[0][3],data_set[0][4])+" mm/s&sup2;<br>";
 	output+="</div>";
 

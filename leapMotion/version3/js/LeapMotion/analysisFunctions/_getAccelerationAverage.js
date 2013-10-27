@@ -17,16 +17,17 @@ function getAccelerationAverage(velocityAr,timestamps){	//Two arrays with the sa
 	
 			accelerationAr.push(velocityChange / timeChange);	//divide velocity by time
 		}
-		
 	}
-	
+
 	var accelerationTotal = 0;	//
-	
+	var timeTotal = 0;
 	for(var i=0;i<accelerationAr.length;i++){
 		
 		accelerationTotal += accelerationAr[i];
-		
+		timeTotal = timeTotal + timestamps[i]
 	}
 
-	return accelerationTotal/ accelerationAr.length;
+	console.log(accelerationTotal + " - "+ timeTotal);
+
+	return accelerationTotal/timeTotal;
 }

@@ -1,0 +1,16 @@
+ONLY MARK FILES IN THE CHECKLIST WHEN THEY HAVE BEEN APPROVED BY ALL TEAM MEMBERS
+---------------------------------------------------------------------------------
+4. Work Contribution Break on all documents and code
+5. Meeting Summary
+6. Project Plan
+7. SRS
+8. Test Plan
+9. Test Results
+10. Usability Report (If applicable)
+11. Technical Manual
+12. User’s Manual
+13. Table of contents of lab manual (if applicable)
+14. CD/DVD Directory Dump
+15. Source Codes (at least 1 file)
+16. MOU
+17. Client Sign off

@@ -26,17 +26,10 @@ controller.on('deviceDisconnected', function() {
 //This is fired at 60 frames per second no matter what
 //If there is no new data for the frame, the previous frames data is sent
 //'frame' can also be 'animationFrame'
-//controller.on('frame', function(frame) {
-	//frameController(frame);
-//});
-
-controller.on('animationFrame', function(frame) {
+controller.on('frame', function(frame) {
 	frameController(frame);
 });
 
-//Leap.loop( function( frame ) {
-//	frameController(frame);
-//})
 
 //This receives data from the device as fast as it can sent it
 //This is faster than 60 frames per second

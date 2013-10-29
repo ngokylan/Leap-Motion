@@ -2,7 +2,7 @@ var recording = false;	//Defines whether or not the system is recording frames
 var recordedFrames = Array();	//Stores the recorded frames for the current recording
 var preRecordFrames = Array();
 
-var timeRequired = 10;	//The amount of time valid frames are recorded for
+var timeRequired = 5;	//The amount of time valid frames are recorded for
 var rangeMultiplier = 5;	//A multiplier for the range of field values that are acceptable, multiplies a value of 20
 var baseRangeVariance = 10;
 var fingersRequired = 5;	//THe amounf of fingers required to be in the frame
@@ -72,7 +72,7 @@ function frameController(frame){	//Looping through every frame passed from the l
 				recordedFrames.push(frame);	//Pushing the current frame into the recordedFrames array
 
 				if(recordedFrames.length==(timeRequired*60)){	//If the time required has been reached
-				
+					console.log(recordedFrames.length);
 					var extractedData = extractData(recordedFrames);	//extract the data from the frames recorded and stores them in extractedData	
 
 

@@ -43,13 +43,12 @@ function extractData(frames){
 		for(var x=0;x<frames[i].pointables.length;x++){	//looping through each of the fingers
 
 			for(var z=0;z<frames[i].pointables[x].tipPosition.length;z++){	//Looping through tip X, Y, Z coordinates of the finger
-				
-				fingerPositions[x][z].push(frames[i].pointables[x].tipPosition[z]); //Pushing the position in to the position array
-				//fingerPositions[x][z].push(frames[i].pointables[x].stabilizedTipPosition[z]); //Pushing the position in to the position array
 
+				fingerPositions[x][z].push(frames[i].pointables[x].tipPosition[z].toFixed(1)); //Pushing the position in to the position array
+				
 			}
 			
-			fingerPositions[x][3].push(frames[i].pointables[x].tipVelocity[1]);
+			fingerPositions[x][3].push(frames[i].pointables[x].tipVelocity[1].toFixed(1));
 			fingerPositions[x][4].push(frames[i].timestamp);
 		}
 	}

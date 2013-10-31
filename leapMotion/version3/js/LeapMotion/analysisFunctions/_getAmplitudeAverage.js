@@ -5,6 +5,14 @@
 	* Description		-	Calculates the average amplitude and returns a value
 */
 function getAmplitude(positionAr){
+
+	/*
+		* Call function WFLC to filter noise
+		* Created: 27-10-2013
+		* By: Minh Duc Nguyen
+	*/
+	positionAr = WFLC(positionAr);
+	
 	
 	var average = getArrayAverage(positionAr);
 	
@@ -76,3 +84,31 @@ function getAmplitude(positionAr){
 
 	return amplitude/ampValues.length;
 }
+
+/*
+	* Created by: Minh Duc Nguyen
+	* Last Edited: 27-10-2013
+	* Last Updated: Minh Duc Nguyen
+	* Description: Implement Noise filter function using Weighted Fourier Linear Combined Algorithm
+
+	* @param: positionAr - is an array that stores entire Amplitude positions during capturing 
+	* @return: filter_positionAr - is an noise free array that noise movements are eliminated using WFLC algorithm
+*/
+function WFLC(positionAr){
+
+	var apply_filter_flag = WFLC_apply; // WFLC_apply is a global variable defining in "js/tremors.js" file
+
+	if(apply_filter_flag == 1){ // if the noise filter option is selected under Option section on the webpage
+		//start apply WFLC fitering algorithm here
+
+		//return should be an array that noise movements are eliminated
+
+		return positionAr; // this should be replaced by filter array using WFLC algorithm.
+
+	}else{// if the noise filter option is not selected under Option section on the webpage
+
+		//keep original captured array data
+		return positionAr;
+	}
+}
+	

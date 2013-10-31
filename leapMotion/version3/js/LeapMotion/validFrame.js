@@ -1,3 +1,9 @@
+/*
+	* Created By		-	Joshua Stopper
+	* Last Edited Date	-	15/10/13
+	* Last Edited By	- 	Joshua Stopper
+	* Description		-	Functions which determine whether or not the frame is contains valid information
+*/
 function validFrame(frame,range,fingersRequired){
 
 	var isHandsValid = validHands(frame.hands.length);

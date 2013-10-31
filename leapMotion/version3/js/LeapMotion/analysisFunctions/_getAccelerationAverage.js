@@ -14,7 +14,7 @@ function getAccelerationAverage(velocityAr,timestamps){	//Two arrays with the sa
 		if(velocityAr[i+1]!=undefined){	//If the current index + 1 does not equal undefined (if it is undefined there is no next value to calculate with)
 			var velocityChange = velocityAr[i+1] - velocityAr[i];	//get the next velocity minus the current velocity
 			var timeChange = timestamps[i+1] - timestamps[i];	//Get the next time minus the current time
-	
+			//console.log(timeChange)
 			accelerationAr.push(velocityChange / timeChange);	//divide velocity by time
 		}
 	}
@@ -27,7 +27,7 @@ function getAccelerationAverage(velocityAr,timestamps){	//Two arrays with the sa
 		timeTotal = timeTotal + timestamps[i]
 	}
 
-	console.log(accelerationTotal + " - "+ timeTotal);
+//	console.log(accelerationTotal + " - "+ timeTotal);
 
 	return accelerationTotal/timeTotal;
 }

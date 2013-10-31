@@ -1,3 +1,11 @@
+/*
+	* modified By		-	Joshua Stopper
+	* Last Edited Date	-	15/10/13
+	* Last Edited By	- 	Joshua Stopper
+	* Description		-	Displays the hand on screen
+	* notes: 			-	Modified by joshua stopper to incorporate color changes in the hand based on position. Comments added
+	* Source: http://js.leapmotion.com/examples/dom-visualizer.html
+*/
 var fingers = {};	//An array of virtual fingers currently in the system
 var spheres = {};	//An arrat of virtual hands currently in the system
 

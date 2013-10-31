@@ -5,6 +5,8 @@
 	* Description		-	Calculates the average of all the values in the array
 */
 function getArrayAverage(array){
+
+	
 	
 	var average = 0;
 
@@ -12,6 +14,7 @@ function getArrayAverage(array){
 		average +=array[i];
 
 	}
-
+	
+	
 	return average/array.length;
 }

@@ -3,19 +3,11 @@
 	* Last Edited Date	-	15/10/13
 	* Last Edited By	- 	Joshua Stopper
 	* Description		-	Calculates the average velocity and returns a value
+	* Notes				-	http://formulas.tutorvista.com/physics/average-velocity-formula.html
 */
-function getVelocityAverage(velocityAr){
-	
-	var totalDisplacement = 0;
 
-	for(var i=0;i<velocityAr.length;i++){	
-		totalDisplacement += velocityAr[i];	
-	}
-	
-	return totalDisplacement/(velocityAr.length);
-}
 
-function getVelocityAverageV2(positionAr,timestamps){
+function getVelocityAverage(positionAr,timestamps){
 
 	var velocityAr = new Array();	//Initializing an array to hold the accelerations
 	

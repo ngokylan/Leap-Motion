@@ -79,7 +79,7 @@ function frameController(frame){	//Looping through every frame passed from the l
 				if(recordedFrames.length==(timeRequired*60)){	//If the time required has been reached
 
 					var extractedData = extractData(recordedFrames);	//extract the data from the frames recorded and stores them in extractedData	
-
+					console.log(extractedData)
 					updateResultsModal(extractedData);	//updating the data in the final results model - this also analyses the frames
 				
 					$('#resultsModal').modal({	//Opening the modal

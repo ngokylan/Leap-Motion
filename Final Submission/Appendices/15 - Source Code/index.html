@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Tremor Detection with Leap Motion</title>
+	<meta name="description" content="Tremor with Leap Motion">
+	<meta name="author" content="SitePoint">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/visualizer.css">
+	<link rel="stylesheet" href="css/base.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+	<div id="app" class="show-hands">
+		<div id="scene">
+<!--
+<div id="cube" class="cube">
+<div class="face tp"></div>
+<div class="face lt"></div>
+<div class="face rt"></div>
+<div class="face ft"></div>
+<div class="face bk"></div>
+</div>
+-->
+<div id="finger" class="cube finger">
+	<div class="face tp"></div>
+	<div class="face lt"></div>
+	<div class="face rt"></div>
+	<div class="face ft"></div>
+	<div class="face bk"></div>
+</div>
+<div id="sphere" class="cube sphere">
+	<div class="face tp"></div>
+	<div class="face lt"></div>
+	<div class="face rt"></div>
+	<div class="face ft"></div>
+	<div class="face bk"></div>
+</div>
+</div>
+</div>
+
+<div id="infoPanel">
+	<div class='well infoPanelContainer'>
+
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title">Tremor Detection with Leap Motion</h4>
+			</div>
+			<div class="modal-body">
+				Welcome to Tremor Detection with Leap Motion. Tremors with Leap motion will detect several attributes related to tremor in a hand.
+				<br><br>
+				When you click the begin button, this box will disappear and the analysis will begin. On the right hand side will be a set of instructions informing you of where to position your hand. Instruction will be simple such as 'Move hand left' or 'Move hand right'.
+				<br><br>
+				Once your hand and fingers are correctly positioned, the recording will begin, this will last 5 seconds and then the results will be displayed.
+				<br><br>
+				Click 'Begin' when you are ready.
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-left openOptions" data-dismiss="modal">Options</button>
+				<button type="button" class="btn btn-default btn-success beginRecording" data-dismiss="modal">Begin</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title">Options</h4>
+			</div>
+			<div class="modal-body">
+
+				<form role="form">
+					<div class="form-group">
+						<label for="timeRequired">Time Required</label>
+						<input data-trigger="focus" data-toggle="tooltip" type="text" class="form-control red-tooltip" id="timeRequired" placeholder="Enter time in seconds">
+						<em class="text-muted">This specifies the length of the recording in seconds.
+						</em>
+					</div>
+					<div class="form-group">
+						<label for="fingersRequired">Required Fingers in recording</label>
+						<input data-trigger="focus" data-toggle="tooltip" type="text" class="form-control red-tooltip" id="fingersRequired" placeholder="Fingers in recording">
+						<em class="text-muted">This specifies the amount of fingers meant to be seen by the device.
+							<br> * Valid range must be from <span class="text-info">1 Finger</span> to <span class="text-info">5 Fingers</span></em>
+						</div>
+						<div class="form-group">
+							<label  for="rangeMultiplier">Valid Range Multiplier</label>
+							<input data-trigger="focus" data-toggle="tooltip" type="text" class="form-control red-tooltip" id="rangeMultiplier" placeholder="Valid Range Multiplier">
+							<em class="text-muted">This specifies the area that the hand can be in to be considered valid <br> * which is <span class="text-info">10 Milimeters</span> from the above of device expanding to 3 different dimensions (x - Vertical, y - Horizontal, and Z - Forward and Backward)
+							<br> * Valid range must be from <span class="text-info">1 Multiplier</span> to <span class="text-info">10 Multiplier</span></em>
+						</div>
+						<div class="form-group">
+							<label>Apply Weighted Fourier Linear Combined Filter Algorithm</label>
+							<div class="checkbox">
+								<label>
+								<input type="checkbox" id="WFLC_tick" placeholder="WFLC algorithm"> Yes
+								</label>
+							</div>
+
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default cancelOptions pull-left" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-default btn-success saveOptions">Save Options</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Results</h4>
+				</div>
+				<div class="modal-body">
+					Results area
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left openOptions" data-dismiss="modal">Options</button>
+					<button type="button" class="btn btn-default btn-success beginRecording" data-dismiss="modal">Begin</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<script src="js/libs/jquery.js"></script>
+	<script src="js/libs/bootstrap.min.js"></script>
+	<script src="js/libs/leap.min.js"></script>
+
+	<script src="js/LeapMotion/validFrame.js"></script>
+	<script src="js/LeapMotion/extractData.js"></script>
+	<script src="js/LeapMotion/colorPicker.js"></script>
+	<script src="js/LeapMotion/handDisplay.js"></script>
+
+	<script src="js/LeapMotion/analysisFunctions/_getAccelerationAverage.js"></script>
+	<script src="js/LeapMotion/analysisFunctions/_getAmplitudeAverage.js"></script>
+	<script src="js/LeapMotion/analysisFunctions/_getArrayAverage.js"></script>
+	<script src="js/LeapMotion/analysisFunctions/_getFrequencyAverage.js"></script>
+	<script src="js/LeapMotion/analysisFunctions/_getVelocityAverage.js"></script>
+	<script src="js/LeapMotion/analysisFunctions/_getEuclidean.js"></script>
+	<script src="js/LeapMotion/lmController.js"></script>
+
+	<script src="js/tremors.js"></script>
+
+</body>
+</html>

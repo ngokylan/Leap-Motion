@@ -1,5 +1,0 @@
-ONLY MARK FILES IN THE CHECKLIST WHEN THEY HAVE BEEN APPROVED BY ALL TEAM MEMBERS
----------------------------------------------------------------------------------
-Cover Sheet - Needs to be signed
-Check List - Needs to be checked off
-Final Project Document - Needs to be finished

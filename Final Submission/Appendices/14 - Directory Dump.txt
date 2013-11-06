@@ -1,2 +1,60 @@
-Need to do this
-Josh - Will do this as the last thing before submission
+1 - CoverSheet.pdf
+2 - Check List.pdf
+3 - Final Project Report.docx
+Appendices
+_FilesInThisFolder.txt
+list.txt
+
+./Appendices:
+10 - Usability Report.txt
+11 - Technical Manual.docx
+12 - User Manual.docx
+13 - Lab Manual TOC.txt
+14 - Directory Dump.txt
+15 - Source Code
+16 - MOU.pdf
+17 - Client Sign-off Form.doc
+18 - Poster.pdf
+4 - Work Contribution.docx
+5 - Meeting Summary.docx
+6 - Project Plan.docx
+7 - Software Requirements Specification.docx
+8 - Test Plan.docx
+9 - Test Report.docx
+_FilesInThisFolder.txt
+
+./Appendices/15 - Source Code:
+css
+index.html
+js
+
+./Appendices/15 - Source Code/css:
+base.css
+bootstrap.min.css
+visualizer.css
+
+./Appendices/15 - Source Code/js:
+LeapMotion
+libs
+tremors.js
+
+./Appendices/15 - Source Code/js/LeapMotion:
+analysisFunctions
+colorPicker.js
+extractData.js
+handDisplay.js
+lmController.js
+validFrame.js
+
+./Appendices/15 - Source Code/js/LeapMotion/analysisFunctions:
+_getAccelerationAverage.js
+_getAmplitudeAverage.js
+_getArrayAverage.js
+_getEuclidean.js
+_getFrequencyAverage.js
+_getVelocityAverage.js
+
+./Appendices/15 - Source Code/js/libs:
+bootstrap.min.js
+jquery.js
+leap.min.js

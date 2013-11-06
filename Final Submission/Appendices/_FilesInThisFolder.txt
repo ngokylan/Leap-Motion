@@ -1,17 +1,17 @@
 ONLY MARK FILES IN THE CHECKLIST WHEN THEY HAVE BEEN APPROVED BY ALL TEAM MEMBERS
 ---------------------------------------------------------------------------------
-4. Work Contribution Break on all documents and code
-5. Meeting Summary
-6. Project Plan
-7. SRS
-8. Test Plan
-9. Test Results
-10. Usability Report (If applicable)
-11. Technical Manual
-12. User’s Manual
-13. Table of contents of lab manual (if applicable)
-14. CD/DVD Directory Dump
-15. Source Codes (at least 1 file)
-16. MOU
-17. Client Sign off
-18. Poster
+4. Work Contribution - All team members need to add what they have done
+5. Meeting Summary - Done, add meeting minutes from next meeting with Philip
+6. Project Plan - Needs to be fixed per the email from caslon
+7. SRS - Needs to be fixed per the email from caslon
+8. Test Plan - Needs to be fixed per the email from caslon
+9. Test Results - Needs to be fixed per the email from caslon
+10. Usability Report (If applicable) - Needs a document to specify why this is not applicable
+11. Technical Manual - More needs to be added to this
+12. User’s Manual - Done I think
+13. Table of contents of lab manual (if applicable) - Needs a document to specify why this is not applicable
+14. CD/DVD Directory Dump - Josh will do this when submitting
+15. Source Codes (at least 1 file) - Files added, all done
+16. MOU - Done
+17. Client Sign off - need to get philip to sign this as well as team mates
+18. Poster - Done
